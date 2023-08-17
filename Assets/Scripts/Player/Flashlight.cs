@@ -3,20 +3,20 @@ using UnityEngine;
 [RequireComponent(typeof(Light))]
 public class Flashlight : MonoBehaviour
 {
-    private bool isActive = true;
-    private Light light;
+    private bool _isActive = true;
+    private Light _light;
 
     private void Start()
     {
-        light = GetComponent<Light>();
+        _light = GetComponent<Light>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            isActive = !isActive;
-            light.enabled = isActive;
+            _isActive = !_isActive;
+            _light.enabled = _isActive;
         }
     }
 }

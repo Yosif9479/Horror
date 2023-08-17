@@ -4,32 +4,39 @@
 public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private float _jumpForce = 8f;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _jumpForce;
 
-    private Rigidbody rigidbody;
-    private GroundCheck groundCheck;
-    private bool isGrounded;
+    private Rigidbody _rigidbody;
+    private GroundCheck _groundCheck;
+    private bool _isGrounded;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        groundCheck = GetComponentInChildren<GroundCheck>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _groundCheck = GetComponentInChildren<GroundCheck>();
     }
 
     private void Update()
     {
-        isGrounded = groundCheck.IsGrounded();
+        _isGrounded = _groundCheck.IsGrounded();
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movement = transform.right * horizontalInput + transform.forward * verticalInput;
-        rigidbody.velocity = new Vector3(movement.x * _moveSpeed, rigidbody.velocity.y, movement.z * _moveSpeed);
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        movement = Vector3.ClampMagnitude(movement, 1f);
+        movement *= _moveSpeed;
+
+        if (_isGrounded)
         {
-            rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rigidbody.velocity = new Vector3(movement.x, _rigidbody.velocity.y, movement.z);
+        }
+
+        if (_isGrounded && Input.GetButtonDown("Jump"))
+        {
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
     }
 }
