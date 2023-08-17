@@ -62,6 +62,7 @@ sysinfo.txt
 *.app
 
 # Substance Painter Files
+/[Aa]ssets/Models/Substance/
 *.spp
 
 # Crashlytics generated file
