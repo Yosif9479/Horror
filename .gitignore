@@ -60,6 +60,8 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+
+# Substance Painter Files
 *.spp
 
 # Crashlytics generated file
