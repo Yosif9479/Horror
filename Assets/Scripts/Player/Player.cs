@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private GroundCheck _groundCheck;
-    private bool _isGrounded;
+    [SerializeField] private bool _isGrounded;
 
     private void Start()
     {
