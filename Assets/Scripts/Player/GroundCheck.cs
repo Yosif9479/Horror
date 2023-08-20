@@ -14,6 +14,11 @@ public class GroundCheck : MonoBehaviour
         isGrounded = false;
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        isGrounded = true;
+    }
+
     public bool IsGrounded()
     {
         return isGrounded;
