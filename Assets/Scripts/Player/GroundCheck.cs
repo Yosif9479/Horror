@@ -6,17 +6,18 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isGrounded = true;
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isGrounded = false;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        isGrounded = true;
+        if (other.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }    
     }
 
     public bool IsGrounded()
